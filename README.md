@@ -447,9 +447,13 @@
         </header>
 
         <!-- Registration Screen -->
-        <div id="registrationScreen">
+        <div id="registrationScreen" class="hidden">
             <div class="card">
                 <h2>🎅 Register Your Team</h2>
+                <p style="color: var(--silver); margin-bottom: 1.5rem; font-size: 0.95rem;">
+                    ⚠️ <strong>Important:</strong> Your team's progress is automatically saved. 
+                    Refreshing or closing the page will not reset your answers or penalty timers!
+                </p>
                 <div class="input-group">
                     <label for="teamName">Team Name</label>
                     <input type="text" id="teamName" placeholder="Enter your team name..." />
@@ -560,6 +564,31 @@
                 return;
             }
 
+            // Check if this team already exists
+            try {
+                const existingTeamResult = await window.storage.get('currentTeam');
+                if (existingTeamResult) {
+                    const existingTeam = JSON.parse(existingTeamResult.value);
+                    if (existingTeam.name === teamName) {
+                        // Team exists, load their data
+                        currentTeam = existingTeam;
+                        const tasksResult = await window.storage.get(`tasks_${currentTeam.name}`);
+                        if (tasksResult) {
+                            completedTasks = JSON.parse(tasksResult.value);
+                        }
+                        const penaltyResult = await window.storage.get(`penalties_${currentTeam.name}`);
+                        if (penaltyResult) {
+                            penaltyTimers = JSON.parse(penaltyResult.value);
+                        }
+                        showQuizScreen();
+                        return;
+                    }
+                }
+            } catch (error) {
+                console.log('No existing team found');
+            }
+
+            // New team registration
             currentTeam = { name: teamName };
             completedTasks = [];
             penaltyTimers = {};
@@ -725,9 +754,12 @@
             if (task.isFinal || task.answer === null) {
                 completedTasks.push(taskId);
                 
-                // Save the answer
+                // Save the answer with timestamp
                 try {
-                    await window.storage.set(`answer_${currentTeam.name}_${taskId}`, answer);
+                    await window.storage.set(`answer_${currentTeam.name}_${taskId}`, JSON.stringify({
+                        answer: answer,
+                        timestamp: Date.now()
+                    }));
                 } catch (error) {
                     console.error('Error saving answer:', error);
                 }
@@ -750,9 +782,12 @@
                 // Correct answer!
                 completedTasks.push(taskId);
                 
-                // Save the answer
+                // Save the answer with timestamp
                 try {
-                    await window.storage.set(`answer_${currentTeam.name}_${taskId}`, answer);
+                    await window.storage.set(`answer_${currentTeam.name}_${taskId}`, JSON.stringify({
+                        answer: answer,
+                        timestamp: Date.now()
+                    }));
                 } catch (error) {
                     console.error('Error saving answer:', error);
                 }
@@ -764,6 +799,28 @@
                 // Wrong answer - apply 2 minute penalty
                 const penaltyEndTime = Date.now() + (2 * 60 * 1000); // 2 minutes from now
                 penaltyTimers[taskId] = penaltyEndTime;
+                
+                // Also save the wrong attempt with timestamp
+                try {
+                    const attemptsKey = `attempts_${currentTeam.name}_${taskId}`;
+                    let attempts = [];
+                    try {
+                        const attemptsResult = await window.storage.get(attemptsKey);
+                        if (attemptsResult) {
+                            attempts = JSON.parse(attemptsResult.value);
+                        }
+                    } catch (e) {}
+                    
+                    attempts.push({
+                        answer: answer,
+                        timestamp: Date.now(),
+                        penaltyUntil: penaltyEndTime
+                    });
+                    
+                    await window.storage.set(attemptsKey, JSON.stringify(attempts));
+                } catch (error) {
+                    console.error('Error saving attempt:', error);
+                }
                 
                 await saveTeamData();
                 renderTasks();
@@ -812,11 +869,37 @@
         async function init() {
             const hasData = await loadTeamData();
             if (hasData) {
+                // Team data exists, show quiz screen immediately
                 showQuizScreen();
+            } else {
+                // No existing team, show registration
+                document.getElementById('registrationScreen').classList.remove('hidden');
             }
         }
 
+        // Run init when page loads
         init();
+
+        // Prevent refresh cheating by continuously checking storage
+        setInterval(async () => {
+            if (currentTeam) {
+                // Reload penalty timers to ensure they're current
+                try {
+                    const penaltyResult = await window.storage.get(`penalties_${currentTeam.name}`);
+                    if (penaltyResult) {
+                        const storedPenalties = JSON.parse(penaltyResult.value);
+                        // Update any penalties that might have been modified
+                        for (const taskId in storedPenalties) {
+                            if (!penaltyTimers[taskId] || storedPenalties[taskId] > penaltyTimers[taskId]) {
+                                penaltyTimers[taskId] = storedPenalties[taskId];
+                            }
+                        }
+                    }
+                } catch (error) {
+                    console.log('Error checking penalties:', error);
+                }
+            }
+        }, 5000); // Check every 5 seconds
     </script>
 </body>
 </html>
