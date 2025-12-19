@@ -918,8 +918,26 @@
             },
             {
                 id: 9,
-                question: "FINAL CHALLENGE: Einstein-gåten - Briten reiser fra den røde gaten. Svensken skal til Mexico. Dansken drikker Pina Colada. Den grønne gaten er direkte til venstre for den hvite gaten. Den som reiser fra den grønne gaten drikker Sangria. Personen som pakket i koffert skal til Aruba. Den reisende fra den gule gaten har bare håndbagasje. Mannen som reiser fra gaten i midten drikker Mojito. Nordmannen reiser fra gate 1. Mannen som pakket i plastpose reiser fra gaten ved siden av den som skal til Bora Bora. Mannen som skal til Jamaica har gaten ved siden av han som pakket i plastpose. Mannen uten bagasje drikker øl. Spanjolen pakket i sekk. Nordmannen reiser fra en gate ved siden av den blå gaten. Mannen som pakket i plastpose reiser fra gaten ved siden han som drikker Mai Tai. Hvilken gate er hvit?",
-                answer: "5",
+                question: `FINAL CHALLENGE: Einstein-gåten 🎄<br><br>
+                Det er fem hus i fem forskjellige farger på rad. I hvert hus bor en person med forskjellig nasjonalitet. Hver person drikker en bestemt drikke, spiser en bestemt julemat, og har en bestemt juletre-pynt. Ingen av dem drikker samme drikke, spiser samme mat, eller har samme pynt.<br><br>
+                <strong>Ledetråder:</strong><br>
+                • Briten bor i det røde huset<br>
+                • Svensken spiser ribbe<br>
+                • Dansken drikker gløgg<br>
+                • Det grønne huset er direkte til venstre for det hvite huset<br>
+                • Personen i det grønne huset drikker julebrus<br>
+                • Personen som har stjerner på treet spiser pinnekjøtt<br>
+                • Personen i det gule huset har engler på treet<br>
+                • Personen i huset i midten drikker eggnog<br>
+                • Nordmannen bor i det første huset<br>
+                • Personen med kulor på treet bor ved siden av personen som spiser lutefisk<br>
+                • Personen som spiser multekrem bor ved siden av personen som har kulor på treet<br>
+                • Personen med lys på treet drikker akevitt<br>
+                • Spanjolen har nisser på treet<br>
+                • Nordmannen bor ved siden av det blå huset<br>
+                • Personen med kulor på treet bor ved siden av personen som drikker kakao<br><br>
+                <strong>Spørsmål: I hvilket hus (1-5) bor personen som spiser lutefisk?</strong>`,
+                answer: "4",
                 isFinal: true
             }
         ];
