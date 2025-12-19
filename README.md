@@ -16,6 +16,9 @@
 
         html {
             scroll-behavior: smooth;
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
         }
 
         :root {
@@ -37,6 +40,8 @@
             overflow-x: hidden;
             -webkit-tap-highlight-color: transparent;
             -webkit-touch-callout: none;
+            width: 100%;
+            max-width: 100vw;
         }
 
         /* Animated snowflakes background */
@@ -73,6 +78,8 @@
             padding: 2rem;
             position: relative;
             z-index: 2;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         header {
@@ -102,6 +109,8 @@
                 -2px -2px 15px rgba(255, 215, 0, 0.3);
             margin-bottom: 0.5rem;
             letter-spacing: 2px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .subtitle {
@@ -121,6 +130,8 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             animation: fadeIn 0.6s ease-out;
             animation-fill-mode: both;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         @keyframes fadeIn {
@@ -317,6 +328,8 @@
             margin-bottom: 1rem;
             color: var(--snow);
             line-height: 1.6;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .final-task {
@@ -454,11 +467,11 @@
             }
 
             .container {
-                padding: 1rem;
+                padding: 1rem 0.75rem;
             }
 
             .card {
-                padding: 1.5rem;
+                padding: 1.5rem 1rem;
                 margin-bottom: 1.5rem;
             }
 
@@ -469,6 +482,8 @@
 
             .task-question {
                 font-size: 1rem;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
             }
 
             .task-number {
@@ -489,6 +504,8 @@
             .team-name {
                 font-size: 1.2rem;
                 text-align: center;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
             }
 
             button {
@@ -512,7 +529,7 @@
             }
 
             .task-item {
-                padding: 1.25rem;
+                padding: 1.25rem 1rem;
             }
 
             .unlocked-badge {
@@ -534,6 +551,7 @@
         @media (max-width: 480px) {
             h1 {
                 font-size: 2rem;
+                word-wrap: break-word;
             }
 
             .subtitle {
@@ -543,15 +561,20 @@
 
             h2 {
                 font-size: 1.3rem;
+                word-wrap: break-word;
+            }
+
+            .container {
+                padding: 0.75rem 0.5rem;
             }
 
             .card {
-                padding: 1.25rem;
+                padding: 1.25rem 0.875rem;
                 border-radius: 16px;
             }
 
             .task-item {
-                padding: 1rem;
+                padding: 1rem 0.875rem;
                 border-radius: 10px;
             }
 
@@ -563,6 +586,12 @@
 
             label {
                 font-size: 0.75rem;
+            }
+
+            .task-question {
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+                hyphens: auto;
             }
         }
     </style>
