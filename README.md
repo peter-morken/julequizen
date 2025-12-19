@@ -426,6 +426,164 @@
             }
         }
 
+        /* Congratulations Screen Styles */
+        #congratulationsScreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        #congratulationsScreen.hidden {
+            display: none !important;
+        }
+
+        .congrats-container {
+            max-width: 800px;
+            width: 100%;
+            animation: fadeIn 1s ease-out;
+            padding: 2rem 1rem;
+            box-sizing: border-box;
+        }
+
+        .trophy {
+            font-size: 8rem;
+            animation: bounce 2s ease-in-out infinite;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .congrats-title {
+            font-family: 'Mountains of Christmas', cursive;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            color: var(--gold);
+            text-shadow: 
+                3px 3px 0 var(--crimson),
+                6px 6px 0 var(--berry),
+                -2px -2px 15px rgba(255, 215, 0, 0.5);
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+            word-wrap: break-word;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 
+                    3px 3px 0 var(--crimson),
+                    6px 6px 0 var(--berry),
+                    -2px -2px 15px rgba(255, 215, 0, 0.5);
+            }
+            to {
+                text-shadow: 
+                    3px 3px 0 var(--crimson),
+                    6px 6px 0 var(--berry),
+                    -2px -2px 30px rgba(255, 215, 0, 0.8),
+                    0 0 40px rgba(255, 215, 0, 0.4);
+            }
+        }
+
+        .congrats-subtitle {
+            font-size: clamp(1.2rem, 4vw, 2rem);
+            color: var(--snow);
+            margin-bottom: 2rem;
+            font-weight: 600;
+            word-wrap: break-word;
+        }
+
+        .congrats-message {
+            font-size: clamp(1rem, 3.5vw, 1.2rem);
+            color: var(--silver);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid var(--gold);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .stat-value {
+            font-family: 'Mountains of Christmas', cursive;
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            color: var(--gold);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: clamp(0.85rem, 3vw, 1rem);
+            color: var(--silver);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .fireworks {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .firework {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            animation: explode 1.5s ease-out forwards;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty)) scale(0);
+                opacity: 0;
+            }
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: var(--gold);
+            position: absolute;
+            animation: confetti-fall 3s linear forwards;
+        }
+
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
         .button-group {
             display: flex;
             gap: 1rem;
@@ -546,6 +704,14 @@
             header {
                 margin-bottom: 2rem;
             }
+
+            .trophy {
+                font-size: 5rem;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 480px) {
@@ -593,6 +759,10 @@
                 overflow-wrap: break-word;
                 hyphens: auto;
             }
+
+            .trophy {
+                font-size: 4rem;
+            }
         }
     </style>
 </head>
@@ -636,6 +806,40 @@
                 <div class="task-list" id="taskList"></div>
             </div>
         </div>
+
+        <!-- Congratulations Screen -->
+        <div id="congratulationsScreen" class="hidden">
+            <div class="fireworks" id="fireworks"></div>
+            
+            <div class="congrats-container">
+                <div class="trophy">🏆</div>
+                <h1 class="congrats-title">Congratulations!</h1>
+                <p class="congrats-subtitle">Quest Complete!</p>
+
+                <div class="card">
+                    <div class="team-name" id="congratsTeamName">Champion Team</div>
+                    <p class="congrats-message">
+                        🎄 You've successfully completed the Christmas Quest! 🎄
+                        <br><br>
+                        Your team showed incredible knowledge, teamwork, and holiday spirit. 
+                        Well done on conquering all the challenges!
+                    </p>
+
+                    <div class="stats">
+                        <div class="stat-item">
+                            <div class="stat-value">6/6</div>
+                            <div class="stat-label">Tasks Completed</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="completionTime">--:--</div>
+                            <div class="stat-label">Time Spent</div>
+                        </div>
+                    </div>
+
+                    <button onclick="startNewQuest()">Start New Quest</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -672,8 +876,8 @@
             },
             {
                 id: 6,
-                question: "FINAL CHALLENGE: Create a Christmas haiku and share your team's favorite Christmas memory!",
-                answer: null, // No wrong answer for final challenge
+                question: "FINAL CHALLENGE: What year was the first Christmas card sent? (Hint: It was in the 1840s)",
+                answer: "1843",
                 isFinal: true
             }
         ];
@@ -800,6 +1004,11 @@
                 const isCompleted = completedTasks.includes(task.id);
                 const isUnderPenalty = isTaskUnderPenalty(task.id);
                 
+                // Hide final task until all regular tasks are completed
+                if (task.isFinal && !allRegularCompleted) {
+                    return; // Skip rendering the final task
+                }
+                
                 // For regular tasks: only show completed tasks and the next incomplete task
                 const taskIndex = regularTasks.findIndex(t => t.id === task.id);
                 const shouldShowRegularTask = task.isFinal || isCompleted || taskIndex === firstIncompleteIndex;
@@ -907,30 +1116,6 @@
 
             const task = TASKS.find(t => t.id === taskId);
             
-            // For final task, accept any answer
-            if (task.isFinal || task.answer === null) {
-                completedTasks.push(taskId);
-                
-                // Save the answer with timestamp
-                try {
-                    localStorage.setItem(`answer_${currentTeam.name}_${taskId}`, JSON.stringify({
-                        answer: answer,
-                        timestamp: Date.now()
-                    }));
-                } catch (error) {
-                    console.error('Error saving answer:', error);
-                }
-
-                await saveTeamData();
-                renderTasks();
-                updateProgress();
-
-                setTimeout(() => {
-                    alert('🎄 Congratulations! Your team has completed the Christmas Quest! 🎄');
-                }, 500);
-                return;
-            }
-
             // Check if answer is correct
             const userAnswer = normalizeAnswer(answer);
             const correctAnswer = normalizeAnswer(task.answer);
@@ -950,6 +1135,24 @@
                 }
 
                 await saveTeamData();
+                
+                // If this is the final task, show congratulations screen
+                if (task.isFinal) {
+                    // Save completion timestamp
+                    try {
+                        localStorage.setItem(`completed_${currentTeam.name}`, JSON.stringify({
+                            teamName: currentTeam.name,
+                            completedAt: Date.now()
+                        }));
+                    } catch (error) {
+                        console.error('Error saving completion:', error);
+                    }
+                    
+                    // Show congratulations screen
+                    showCongratulations();
+                    return;
+                }
+                
                 renderTasks();
                 updateProgress();
             } else {
@@ -999,6 +1202,7 @@
                     if (currentTeam) {
                         localStorage.removeItem(`tasks_${currentTeam.name}`);
                         localStorage.removeItem(`penalties_${currentTeam.name}`);
+                        localStorage.removeItem(`completed_${currentTeam.name}`);
                         // Delete all answers
                         for (const task of TASKS) {
                             localStorage.removeItem(`answer_${currentTeam.name}_${task.id}`);
@@ -1016,6 +1220,139 @@
                 document.getElementById('teamName').value = '';
                 document.getElementById('registrationScreen').classList.remove('hidden');
                 document.getElementById('quizScreen').classList.add('hidden');
+                document.getElementById('congratulationsScreen').classList.add('hidden');
+            }
+        }
+
+        // Congratulations Screen Functions
+        function showCongratulations() {
+            document.getElementById('registrationScreen').classList.add('hidden');
+            document.getElementById('quizScreen').classList.add('hidden');
+            document.getElementById('congratulationsScreen').classList.remove('hidden');
+            
+            // Load team data
+            document.getElementById('congratsTeamName').textContent = currentTeam.name;
+            
+            // Calculate completion time
+            try {
+                const completionData = localStorage.getItem(`completed_${currentTeam.name}`);
+                if (completionData) {
+                    const completion = JSON.parse(completionData);
+                    
+                    // Get the first task timestamp
+                    let startTime = completion.completedAt;
+                    try {
+                        const answer1 = localStorage.getItem(`answer_${currentTeam.name}_1`);
+                        if (answer1) {
+                            const answerData = JSON.parse(answer1);
+                            startTime = answerData.timestamp;
+                        }
+                    } catch (e) {}
+
+                    const duration = completion.completedAt - startTime;
+                    const minutes = Math.floor(duration / 60000);
+                    const seconds = Math.floor((duration % 60000) / 1000);
+                    document.getElementById('completionTime').textContent = 
+                        `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                }
+            } catch (error) {
+                console.error('Error calculating time:', error);
+            }
+            
+            // Start celebrations
+            createConfetti();
+            startFireworks();
+        }
+
+        function createFirework(x, y) {
+            const colors = ['#FFD700', '#C41E3A', '#FFFAFA', '#0F5132', '#8B0000'];
+            const particleCount = 30;
+
+            for (let i = 0; i < particleCount; i++) {
+                const firework = document.createElement('div');
+                firework.className = 'firework';
+                firework.style.left = x + 'px';
+                firework.style.top = y + 'px';
+                firework.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                const angle = (Math.PI * 2 * i) / particleCount;
+                const velocity = 50 + Math.random() * 100;
+                const tx = Math.cos(angle) * velocity;
+                const ty = Math.sin(angle) * velocity;
+                
+                firework.style.setProperty('--tx', tx + 'px');
+                firework.style.setProperty('--ty', ty + 'px');
+                
+                document.getElementById('fireworks').appendChild(firework);
+                
+                setTimeout(() => firework.remove(), 1500);
+            }
+        }
+
+        let fireworksInterval;
+        function startFireworks() {
+            // Clear any existing interval
+            if (fireworksInterval) {
+                clearInterval(fireworksInterval);
+            }
+            
+            // Launch fireworks periodically
+            fireworksInterval = setInterval(() => {
+                const x = Math.random() * window.innerWidth;
+                const y = Math.random() * (window.innerHeight / 2);
+                createFirework(x, y);
+            }, 800);
+        }
+
+        function createConfetti() {
+            const colors = ['#FFD700', '#C41E3A', '#FFFAFA', '#0F5132', '#C0C0C0'];
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.top = '-10px';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 3000);
+                }, i * 50);
+            }
+        }
+
+        function startNewQuest() {
+            if (confirm('This will reset all progress. Are you sure?')) {
+                // Stop fireworks
+                if (fireworksInterval) {
+                    clearInterval(fireworksInterval);
+                }
+                
+                try {
+                    if (currentTeam) {
+                        // Clear all team data
+                        localStorage.removeItem(`tasks_${currentTeam.name}`);
+                        localStorage.removeItem(`penalties_${currentTeam.name}`);
+                        localStorage.removeItem(`completed_${currentTeam.name}`);
+                        
+                        // Clear answers
+                        for (const task of TASKS) {
+                            localStorage.removeItem(`answer_${currentTeam.name}_${task.id}`);
+                            localStorage.removeItem(`attempts_${currentTeam.name}_${task.id}`);
+                        }
+                    }
+                    localStorage.removeItem('currentTeam');
+                } catch (error) {
+                    console.error('Error resetting:', error);
+                }
+                
+                currentTeam = null;
+                completedTasks = [];
+                penaltyTimers = {};
+                document.getElementById('teamName').value = '';
+                document.getElementById('registrationScreen').classList.remove('hidden');
+                document.getElementById('quizScreen').classList.add('hidden');
+                document.getElementById('congratulationsScreen').classList.add('hidden');
             }
         }
 
