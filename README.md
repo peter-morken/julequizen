@@ -795,7 +795,7 @@
                 <h2>🎅 Register Your Team</h2>
                 <p style="color: var(--silver); margin-bottom: 1.5rem; font-size: clamp(0.85rem, 3.5vw, 0.95rem); line-height: 1.6;">
                     ⚠️ <strong>Important:</strong> Your team's progress is automatically saved. 
-                    Refreshing or closing the page will not reset your answers or penalty timers!
+                    Refreshing or closing the page will not reset your answers or penalty timers! Wrong answers give a 10 second penalty.
                 </p>
                 <div class="input-group">
                     <label for="teamName">Team Name</label>
@@ -876,7 +876,7 @@
             },
             {
                 id: 3,
-                question: "Hva er etternavnet til artisten bak den originale versjonen av denne låta?",
+                question: "Hva er navnet til artisten bak den originale versjonen av denne låta?",
                 answer: "madonna",
                 isFinal: false,
                 audioFile: "Madonna.mp3"
@@ -1213,8 +1213,8 @@
                 renderTasks();
                 updateProgress();
             } else {
-                // Wrong answer - apply 2 minute penalty
-                const penaltyEndTime = Date.now() + (1 * 10 * 1000); // 2 minutes from now
+                // Wrong answer - apply 10 second penalty
+                const penaltyEndTime = Date.now() + (10 * 1000); // 10 seconds from now
                 penaltyTimers[taskId] = penaltyEndTime;
                 
                 // Also save the wrong attempt with timestamp
