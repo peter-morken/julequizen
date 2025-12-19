@@ -332,6 +332,22 @@
             overflow-wrap: break-word;
         }
 
+        .audio-player {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .audio-player audio {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        .audio-player audio::-webkit-media-controls-panel {
+            background: rgba(255, 215, 0, 0.1);
+        }
+
         .final-task {
             background: linear-gradient(135deg, rgba(196, 30, 58, 0.2) 0%, rgba(139, 0, 0, 0.2) 100%);
             border: 3px solid var(--crimson);
@@ -846,9 +862,10 @@
         const TASKS = [
             {
                 id: 1,
-                question: "What Christmas carol contains the lyrics 'Strike the harp and join the chorus'?",
-                answer: "deck the halls",
-                isFinal: false
+                question: "Hva heter denne sangen?",
+                answer: "africa",
+                isFinal: false,
+                audioFile: "Afrika.mp3"
             },
             {
                 id: 2,
@@ -1045,6 +1062,19 @@
                     <div class="task-question">${task.question}</div>
                 `;
 
+                // Add audio player if task has audio file
+                if (task.audioFile && isActive) {
+                    const audioDiv = document.createElement('div');
+                    audioDiv.className = 'audio-player';
+                    audioDiv.innerHTML = `
+                        <audio id="audio_${task.id}" controls autoplay loop>
+                            <source src="${task.audioFile}" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    `;
+                    taskDiv.appendChild(audioDiv);
+                }
+
                 if (isUnderPenalty) {
                     const penaltyDiv = document.createElement('div');
                     penaltyDiv.className = 'penalty-timer';
@@ -1122,6 +1152,14 @@
 
             if (userAnswer === correctAnswer || userAnswer.includes(correctAnswer) || correctAnswer.includes(userAnswer)) {
                 // Correct answer!
+                
+                // Stop audio if playing
+                const audioElement = document.getElementById(`audio_${taskId}`);
+                if (audioElement) {
+                    audioElement.pause();
+                    audioElement.currentTime = 0;
+                }
+                
                 completedTasks.push(taskId);
                 
                 // Save the answer with timestamp
