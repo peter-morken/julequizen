@@ -843,7 +843,7 @@
 
                     <div class="stats">
                         <div class="stat-item">
-                            <div class="stat-value">9/9</div>
+                            <div class="stat-value">8/8</div>
                             <div class="stat-label">Tasks Completed</div>
                         </div>
                         <div class="stat-item">
@@ -869,76 +869,52 @@
             },
             {
                 id: 2,
-                question: "Hvilket band står bak denne slageren?",
+                question: "Hvilket band står bak den originale versjonen av denne sangen?",
                 answer: "journey",
                 isFinal: false,
                 audioFile: "Journey.mp3"
             },
             {
                 id: 3,
-                question: "Hva er etternavnet til artisten bak denne låta?",
+                question: "Hva er etternavnet til artisten bak den originale versjonen av denne låta?",
                 answer: "madonna",
                 isFinal: false,
                 audioFile: "Madonna.mp3"
             },
             {
                 id: 4,
-                question: "Hvilket band står bak denne låta?",
+                question: "Hvilket band står bak den originale versjonen av denne låta?",
                 answer: "a-ha",
                 isFinal: false,
                 audioFile: "A-ha.mp3"
             },
             {
                 id: 5,
-                question: "Hva er etternavnet til artisten bak denne låta?",
+                question: "Hva er etternavnet til artisten bak den originale versjonen av denne låta?",
                 answer: "houston",
                 isFinal: false,
                 audioFile: "Houston.mp3"
             },
             {
                 id: 6,
-                question: "Hva er fornavnet til artisten bak denne låta?",
+                question: "Hva er fornavnet til artisten bak den originale versjonen av denne låta?",
                 answer: "rick",
                 isFinal: false,
                 audioFile: "Rick.mp3"
             },
             {
                 id: 7,
-                question: "Hva er fornavnet til artisten bak denne låta?",
+                question: "Hva er fornavnet til artisten bak den originale versjonen av denne låta?",
                 answer: "tina",
                 isFinal: false,
                 audioFile: "Tina.mp3"
             },
             {
                 id: 8,
-                question: "Hva heter bandet bak denne låta?",
+                question: "Hva heter bandet bak den originale versjonen av denne låta?",
                 answer: "wham",
-                isFinal: false,
+                isFinal: true,
                 audioFile: "Wham.mp3"
-            },
-            {
-                id: 9,
-                question: `FINAL CHALLENGE: Einstein-gåten 🎄<br><br>
-                Det er fem hus i fem forskjellige farger på rad. I hvert hus bor en person med forskjellig nasjonalitet. Hver person drikker en bestemt drikke, spiser en bestemt julemat, og har en bestemt juletre-pynt. Ingen av dem drikker samme drikke, spiser samme mat, eller har samme pynt.<br><br>
-                <strong>Ledetråder:</strong><br>
-                • Briten bor i det røde huset<br>
-                • Svensken spiser ribbe<br>
-                • Dansken drikker gløgg<br>
-                • Det grønne huset er direkte til venstre for det hvite huset<br>
-                • Personen i det grønne huset drikker julebrus<br>
-                • Personen som har stjerner på treet spiser pinnekjøtt<br>
-                • Personen i det gule huset har engler på treet<br>
-                • Personen i huset i midten drikker eggnog<br>
-                • Nordmannen bor i det første huset<br>
-                • Personen med kulor på treet bor ved siden av personen som spiser lutefisk<br>
-                • Personen som spiser multekrem bor ved siden av personen som har kulor på treet<br>
-                • Personen med lys på treet drikker akevitt<br>
-                • Spanjolen har nisser på treet<br>
-                • Nordmannen bor ved siden av det blå huset<br>
-                • Personen med kulor på treet bor ved siden av personen som drikker kakao<br><br>
-                <strong>Spørsmål: I hvilket hus (1-5) bor personen som spiser lutefisk?</strong>`,
-                answer: "4",
-                isFinal: true
             }
         ];
 
