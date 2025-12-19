@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
-    <title>Christmas Quest 🎄</title>
+    <title>Nisseopprøret 🎅</title>
     <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&family=Karla:wght@400;600&display=swap" rel="stylesheet">
     <style>
         * {
@@ -785,23 +785,28 @@
 <body>
     <div class="container">
         <header>
-            <h1><span class="ornament">🎄</span> Christmas Quest <span class="ornament">🎄</span></h1>
-            <p class="subtitle">Team Challenge 2024</p>
+            <h1><span class="ornament">🎅</span> Nisseopprøret <span class="ornament">🎅</span></h1>
+            <p class="subtitle">Escape Room</p>
         </header>
 
         <!-- Registration Screen -->
         <div id="registrationScreen" class="hidden">
             <div class="card">
-                <h2>🎅 Register Your Team</h2>
+                <h2>🎅 Velkommen til Nisseopprøret</h2>
+                <p style="color: var(--snow); margin-bottom: 1.5rem; font-size: clamp(0.9rem, 3.5vw, 1rem); line-height: 1.8; text-align: left;">
+                    Det har skjedd. Julenissen har endelig knekt under presset av årevis med urimelige forventninger, Amazon Prime-konkurranse, og konstante klager om at "Xbox-en var feil farge". Han har stengt seg inne på kontoret sitt med en flaske akevitt og nekter å komme ut.
+                    <br><br>
+                    Som den eneste nissen med nøkkelkort til alle avdelingene (takk, HR), er DU den uheldige sjelen som må fikse dette kaoset. Problemet? Julenissen har kodelåst alt i et fyllearrangert raseri, og du har 24 timer på deg før Instagram-generasjonen våkner og oppdager at julen er avlyst.
+                </p>
                 <p style="color: var(--silver); margin-bottom: 1.5rem; font-size: clamp(0.85rem, 3.5vw, 0.95rem); line-height: 1.6;">
-                    ⚠️ <strong>Important:</strong> Your team's progress is automatically saved. 
-                    Refreshing or closing the page will not reset your answers or penalty timers! Wrong answers give a 10 second penalty.
+                    ⚠️ <strong>Viktig:</strong> Lagets fremgang lagres automatisk. 
+                    Å oppdatere eller lukke siden vil ikke tilbakestille svarene eller straffetidene deres! Feil svar gir 10 sekunders straff.
                 </p>
                 <div class="input-group">
-                    <label for="teamName">Team Name</label>
-                    <input type="text" id="teamName" placeholder="Enter your team name..." />
+                    <label for="teamName">Lagets Nissenavn</label>
+                    <input type="text" id="teamName" placeholder="F.eks. Snøballkrigerne, Glitter-gjengen..." />
                 </div>
-                <button onclick="registerTeam()">Start Quest</button>
+                <button onclick="registerTeam()">Start Rømningen</button>
             </div>
         </div>
 
@@ -814,11 +819,19 @@
                         <div class="progress-fill" id="progressFill" style="width: 0%"></div>
                     </div>
                 </div>
-                <button class="button-secondary" onclick="resetApp()">Reset</button>
+                <div style="display: flex; gap: 0.5rem;">
+                    <button class="button-secondary" onclick="devGoToStart()" title="Developer: Go to Start">⌂</button>
+                    <button class="button-secondary" onclick="devPrevTask()" title="Developer: Previous Task">◄</button>
+                    <button class="button-secondary" onclick="devNextTask()" title="Developer: Next Task">►</button>
+                    <button class="button-secondary" onclick="resetApp()">Tilbakestill</button>
+                </div>
             </div>
 
             <div class="card">
-                <h2>🎁 Your Christmas Tasks</h2>
+                <h2>🎵 Kapittel 1: Verkstedet</h2>
+                <p style="color: var(--snow); margin-bottom: 1.5rem; font-size: clamp(0.9rem, 3.5vw, 1rem); line-height: 1.8;">
+                    Du ankommer verkstedet og finner 8 nisser som har funnet julegløggen litt for tidlig i år. De har startet karaoke og nekter å jobbe før du beviser at DU kan noe om musikk. "Du kan ikke være sjef for oss hvis du ikke engang kan gjenkjenne hva vi synger!" roper den mest fulle nissen.
+                </p>
                 <div class="task-list" id="taskList"></div>
             </div>
         </div>
@@ -829,30 +842,30 @@
             
             <div class="congrats-container">
                 <div class="trophy">🏆</div>
-                <h1 class="congrats-title">Congratulations!</h1>
-                <p class="congrats-subtitle">Quest Complete!</p>
+                <h1 class="congrats-title">Gratulerer!</h1>
+                <p class="congrats-subtitle">Dere Rømte!</p>
 
                 <div class="card">
-                    <div class="team-name" id="congratsTeamName">Champion Team</div>
+                    <div class="team-name" id="congratsTeamName">Mesterlaget</div>
                     <p class="congrats-message">
-                        🎄 You've successfully completed the Christmas Quest! 🎄
+                        🎅 Dere har klart å stoppe nisseopprøret! 🎅
                         <br><br>
-                        Your team showed incredible knowledge, teamwork, and holiday spirit. 
-                        Well done on conquering all the challenges!
+                        Laget deres viste utrolig kunnskap, lagarbeid og julestemning. 
+                        Godt jobbet med å mestre alle utfordringene!
                     </p>
 
                     <div class="stats">
                         <div class="stat-item">
-                            <div class="stat-value">8/8</div>
-                            <div class="stat-label">Tasks Completed</div>
+                            <div class="stat-value">19/19</div>
+                            <div class="stat-label">Utfordringer Fullført</div>
                         </div>
                         <div class="stat-item">
                             <div class="stat-value" id="completionTime">--:--</div>
-                            <div class="stat-label">Time Spent</div>
+                            <div class="stat-label">Tid Brukt</div>
                         </div>
                     </div>
 
-                    <button onclick="startNewQuest()">Start New Quest</button>
+                    <button onclick="startNewQuest()">Start Ny Rømning</button>
                 </div>
             </div>
         </div>
@@ -865,56 +878,182 @@
                 question: "Hva heter denne sangen?",
                 answer: "africa",
                 isFinal: false,
-                audioFile: "Afrika.mp3"
+                audioFile: "Afrika.mp3",
+                chapter: 1
             },
             {
                 id: 2,
                 question: "Hvilket band står bak den originale versjonen av denne sangen?",
                 answer: "journey",
                 isFinal: false,
-                audioFile: "Journey.mp3"
+                audioFile: "Journey.mp3",
+                chapter: 1
             },
             {
                 id: 3,
                 question: "Hva er navnet til artisten bak den originale versjonen av denne låta?",
                 answer: "madonna",
                 isFinal: false,
-                audioFile: "Madonna.mp3"
+                audioFile: "Madonna.mp3",
+                chapter: 1
             },
             {
                 id: 4,
                 question: "Hvilket band står bak den originale versjonen av denne låta?",
                 answer: "a-ha",
                 isFinal: false,
-                audioFile: "A-ha.mp3"
+                audioFile: "A-ha.mp3",
+                chapter: 1
             },
             {
                 id: 5,
                 question: "Hva er etternavnet til artisten bak den originale versjonen av denne låta?",
                 answer: "houston",
                 isFinal: false,
-                audioFile: "Houston.mp3"
+                audioFile: "Houston.mp3",
+                chapter: 1
             },
             {
                 id: 6,
                 question: "Hva er fornavnet til artisten bak den originale versjonen av denne låta?",
                 answer: "rick",
                 isFinal: false,
-                audioFile: "Rick.mp3"
+                audioFile: "Rick.mp3",
+                chapter: 1
             },
             {
                 id: 7,
                 question: "Hva er fornavnet til artisten bak den originale versjonen av denne låta?",
                 answer: "tina",
                 isFinal: false,
-                audioFile: "Tina.mp3"
+                audioFile: "Tina.mp3",
+                chapter: 1
             },
             {
                 id: 8,
                 question: "Hva heter bandet bak den originale versjonen av denne låta?",
                 answer: "wham",
+                isFinal: false,
+                audioFile: "Wham.mp3",
+                chapter: 1
+            },
+            {
+                id: 9,
+                question: `<strong>REGLER (les nøye, din idiot):</strong><br>
+                "X tall er riktige" = X av sifrene finnes SOMEWHERE i koden<br>
+                "Y er på riktig plass" = Y av sifrene er på EKSAKT korrekt posisjon<br>
+                "Z er feil" = Z siffer finnes IKKE i koden i det hele tatt<br><br>
+                
+                <strong>Forsøk 1:</strong> 1 2 3 4 5<br>
+                Resultat: 2 tall er riktige, 0 er på riktig plass, 3 er feil<br><br>
+                
+                <strong>Forsøk 2:</strong> 6 7 8 9 0<br>
+                Resultat: 2 tall er riktige, 1 er på riktig plass, 3 er feil<br><br>
+                
+                <strong>Forsøk 3:</strong> 2 6 4 8 1<br>
+                Resultat: 4 tall er riktige, 1 er på riktig plass, 1 er feil<br><br>
+                
+                <strong>Forsøk 4:</strong> 8 4 2 6 9<br>
+                Resultat: 4 tall er riktige, 2 er på riktig plass, 1 er feil<br><br>
+                
+                <strong>Forsøk 5:</strong> 8 2 4 0 6<br>
+                Resultat: 4 tall er riktige, 1 er på riktig plass, 1 er feil<br><br>
+                
+                <strong>Forsøk 6:</strong> 4 8 6 2 7<br>
+                Resultat: 4 tall er riktige, 2 er på riktig plass, 1 er feil<br><br>
+                
+                <strong>Forsøk 7:</strong> 6 8 4 2 1<br>
+                Resultat: 4 tall er riktige, 3 er på riktig plass, 1 er feil<br><br>
+                
+                <strong>Hva er den 5-sifrede koden? (Skriv uten mellomrom, f.eks: 12345)</strong>`,
+                answer: "68426",
+                isFinal: false,
+                chapter: 2
+            },
+            {
+                id: 10,
+                question: "Hvilken sport forbindes med hva 2. juledag kalles i engelsktalende land?",
+                answer: "boksing",
+                isFinal: false,
+                chapter: 3
+            },
+            {
+                id: 11,
+                question: "Hvilket land flyktet Josef og Maria til for å redde Jesus?",
+                answer: "egypt",
+                isFinal: false,
+                chapter: 3
+            },
+            {
+                id: 12,
+                question: "Hvilken høy-relevant kjent figur har en birolle i Hjemme Alene 2? (etternavn)",
+                answer: "trump",
+                isFinal: false,
+                chapter: 3
+            },
+            {
+                id: 13,
+                question: "Hvilken TV-kanal sender Rampenissen?",
+                answer: "nrk",
+                isFinal: false,
+                chapter: 3
+            },
+            {
+                id: 14,
+                question: "Hvem synger sangen 'Home for Christmas'? (etternavn)",
+                answer: "bing",
+                isFinal: false,
+                chapter: 3
+            },
+            {
+                id: 15,
+                question: "Hva heter julekalenderen TV2 sendte for første gang i 1994, der nissene vi følger blant annet synger om rytmisk bevegelse i et spesifikt fottøy?",
+                answer: "the julekalender",
+                isFinal: false,
+                chapter: 3
+            },
+            {
+                id: 16,
+                question: `Denne pakken skal til en by (hvis navn enkelt kan todeles), og her finner du et knutepunkt som har vært størst i verden.<br><br>
+                Første del av navnet kan gi assosiasjon til en tragisk hendelse, kan ha norsk navn, og fremkalle en reaksjon av vemmelse. Tanken kan også gå til binding, ørken, nøtteknekkeren og hår, filmkokk, fanger fra eventyr, jord og når tøff konkurranse rår.<br><br>
+                Andre del gir også assosiasjoner; som asiatiske hager, å være stille, et forlag, nyttig byggverk eller bading, samt at dèt er mulig å spille.<br><br>
+                <strong>Hvor skal pakken?</strong>`,
+                answer: "rotterdam",
+                isFinal: false,
+                chapter: 4
+            },
+            {
+                id: 17,
+                question: `Denne pakken skal til et sted som kan assosieres med odontologi, men splittes navnet i fem, er det tredje sentralt i anatomi.<br><br>
+                Det tredje kan stå etter fiske, stille, stol og hale, mens det første ordet er filmen om en grønnkledd julevenn.<br><br>
+                Det andre ordet utgjør en artikkel eller et enkelt tallord, fjerde er svovel og det femte å finne ved enhver fjord.<br><br>
+                Samlet knyttes de første tre til forbud, og feiring av fjorten, og på engelsk kjent fra Paul-sang (da ved siden av en sort, en).<br><br>
+                <strong>Hvor skal pakken?</strong>`,
+                answer: "elfenbenskysten",
+                isFinal: false,
+                chapter: 4
+            },
+            {
+                id: 18,
+                question: `Denne pakken skal til hjembyen til et ekte idol, et mindre sted ikke så langt fra der en pirat har bol.<br><br>
+                Stedsnavnet kan deles i vakker og den som på svie byr, eller i en i kretsen og en (nynorsk) gjeng av firbente stae dyr.<br><br>
+                For sistnevnte deling, kan første ord knyttes til en bistandssang, Viggo, en TV-serie, hund, og gitaren til Tang.<br><br>
+                Den tilhørende gjengen kan bestå av det triste til han gule og det glade til han grønne, men ikke kongen (han uten mule).<br><br>
+                <strong>Hvor skal pakken?</strong>`,
+                answer: "vennesla",
+                isFinal: false,
+                chapter: 4
+            },
+            {
+                id: 19,
+                question: `<strong>Under her har jeg skrevet ned tanker. Refleksjoner fra en mann som har sett for mange juler. Les mellom linjene. Finn essensen. Det eneste som fortsatt gir mening for meg.</strong><br><br>
+                
+                <em>Prisen for å glede alle andre hele tiden? Isolasjon. Total. Komplett. Evig. Nattene er verst, vet du. Når alle sover. Nordlyset danser, men jeg ser det knapt lenger. Er dette virkelig alt? År etter år? Kanskje burde jeg bare... gi opp. Jeg husker da det betydde noe. Da JEG betydde noe. Ønsket var annerledes den gang. Enklere. Tiden tar alt, til slutt. Selv magien. Takk for ingenting, moderne verden.</em><br><br>
+                
+                <strong>Hva er det eneste som fortsatt gir mening? (Skriv svaret som ett ord)</strong>`,
+                answer: "pjokken",
                 isFinal: true,
-                audioFile: "Wham.mp3"
+                chapter: 5
             }
         ];
 
@@ -957,7 +1096,7 @@
             const teamName = document.getElementById('teamName').value.trim();
             
             if (!teamName) {
-                alert('Please enter a team name!');
+                alert('Vennligst skriv inn et nissenavn!');
                 return;
             }
 
@@ -1036,6 +1175,8 @@
             let firstIncompleteIndex = regularTasks.findIndex(t => !completedTasks.includes(t.id));
             if (firstIncompleteIndex === -1) firstIncompleteIndex = regularTasks.length; // All regular tasks complete
 
+            let currentChapter = null;
+
             TASKS.forEach((task, index) => {
                 const isCompleted = completedTasks.includes(task.id);
                 const isUnderPenalty = isTaskUnderPenalty(task.id);
@@ -1053,6 +1194,70 @@
                     return; // Skip this task - don't render it yet
                 }
 
+                // Add chapter header if this is a new chapter
+                if (task.chapter && task.chapter !== currentChapter) {
+                    currentChapter = task.chapter;
+                    const chapterHeader = document.createElement('div');
+                    chapterHeader.style.marginTop = currentChapter === 1 ? '0' : '2rem';
+                    
+                    if (currentChapter === 2) {
+                        chapterHeader.innerHTML = `
+                            <h2 style="font-family: 'Mountains of Christmas', cursive; font-size: 2rem; color: var(--gold); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                                🔒 Kapittel 2: Nisselåsen fra Helvete
+                            </h2>
+                            <p style="color: var(--snow); margin-bottom: 1.5rem; font-size: clamp(0.9rem, 3.5vw, 1rem); line-height: 1.8;">
+                                Dere står foran den massive stålporten til hovedverkstedet. På veggen henger det en lapp skrevet med vinglete håndskrift (definitivt akevitt-påvirket). Nederst står det: "Hvis dere ikke kan løse DETTE, fortjener dere ikke å lage leker. Og ja, jeg gjorde den ekstra vanskelig. Fordi, fuck dere. - Sjefen"
+                            </p>
+                        `;
+                        taskList.appendChild(chapterHeader);
+                    } else if (currentChapter === 3) {
+                        chapterHeader.innerHTML = `
+                            <h2 style="font-family: 'Mountains of Christmas', cursive; font-size: 2rem; color: var(--gold); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                                🥜 Kapittel 3: Nøtteknekkeren
+                            </h2>
+                            <p style="color: var(--snow); margin-bottom: 1.5rem; font-size: clamp(0.9rem, 3.5vw, 1rem); line-height: 1.8;">
+                                Dere ankommer et helt landskap av pepperkaker og marsipan. Men noe er galt. Alt er... grått. Fargeløst. Deprimerende. Som å se Paradise Hotel uten filter.
+                                <br><br>
+                                En desperat pepperkakeordfører kommer løpende: "ENDELIG! Noen! Julenissen ringte i stad - full som en alke - og sa vi måtte 'bevise vår verdi' før han åpnet porten tilbake til verkstedet. Han etterlot seg nøtter. Ikke spiselige nøtter. VOKSEN-nøtter. For folk som faktisk VET ting."
+                            </p>
+                        `;
+                        taskList.appendChild(chapterHeader);
+                    } else if (currentChapter === 4) {
+                        chapterHeader.innerHTML = `
+                            <h2 style="font-family: 'Mountains of Christmas', cursive; font-size: 2rem; color: var(--gold); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                                📦 Kapittel 4: Pakke-kaoset
+                            </h2>
+                            <p style="color: var(--snow); margin-bottom: 1.5rem; font-size: clamp(0.9rem, 3.5vw, 1rem); line-height: 1.8;">
+                                En massiv hall fylt med pakker. Tusenvis av dem. Alle adressert, men ingen sortert. En stresset postnisse står midt i kaoset med en clipboard som ser ut til å ha vært gjennom en krig.
+                                <br><br>
+                                "Å, ENDELIG!" roper han. "Julenissen låste sorteringsmaskinen før han stengte seg inne! Nå står jeg her med tre KRITISKE pakker som må ut I KVELD, men adressene er... vel, han skrev dem mens han var full. De er kodet som jævlige gåter!"
+                                <br><br>
+                                Han holder frem tre sedler med vinglete håndskrift. "Løs disse, så får dere tilgang til neste område. Fail, og julen er fucked for tre familier. No pressure."
+                            </p>
+                        `;
+                        taskList.appendChild(chapterHeader);
+                    } else if (currentChapter === 5) {
+                        chapterHeader.innerHTML = `
+                            <h2 style="font-family: 'Mountains of Christmas', cursive; font-size: 2rem; color: var(--gold); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                                ❄️ Kapittel 5: Julenissens Kontor
+                            </h2>
+                            <p style="color: var(--snow); margin-bottom: 1.5rem; font-size: clamp(0.9rem, 3.5vw, 1rem); line-height: 1.8;">
+                                Et spektakulært palass av lys og is. Men inne, bak en massiv dør, hører dere Julenissen synge "Last Christmas" på repeat, helt falskt, mens han snufser høylydt.
+                                <br><br>
+                                En lapp på døren, skrevet med vinglete håndskrift og noen akevittflekker:
+                                <br><br>
+                                <em>"Så. Dere kom altså. Gratulerer.<br>
+                                Jeg antar dere vil ha meg ut? Vil at jeg skal 'fikse alt'? Selvfølgelig. Det er jo det jeg gjør. Det jeg ALLTID gjør.<br>
+                                Men før jeg åpner denne døren... før jeg går tilbake til det sirkuset... vil jeg at dere forstår noe.<br>
+                                Under her har jeg skrevet ned tanker. Refleksjoner fra en mann som har sett for mange juler. Les mellom linjene. Finn essensen. Det eneste som fortsatt gir mening for meg.<br>
+                                Hvis dere finner det, fortjener dere å komme inn.<br>
+                                - En som er for gammel for dette"</em>
+                            </p>
+                        `;
+                        taskList.appendChild(chapterHeader);
+                    }
+                }
+
                 const isLocked = (task.isFinal && !allRegularCompleted) || isUnderPenalty;
                 const isActive = !isCompleted && !isLocked;
 
@@ -1061,21 +1266,37 @@
                 taskDiv.id = `task_${task.id}`;
                 
                 let statusClass = isCompleted ? 'completed' : isActive ? 'active' : 'locked';
-                let statusText = isCompleted ? '✓ Complete' : isActive ? 'Answer Now' : '🔒 Locked';
+                let statusText = isCompleted ? '✓ Fullført' : isActive ? 'Svar Nå' : '🔒 Låst';
 
                 if (isUnderPenalty) {
-                    statusText = '⏱️ Penalty';
+                    statusText = '⏱️ Straff';
                 }
 
                 if (task.isFinal && allRegularCompleted && !isCompleted) {
                     taskDiv.innerHTML = `
-                        <div class="unlocked-badge">✨ UNLOCKED! ✨</div>
+                        <div class="unlocked-badge">✨ LÅST OPP! ✨</div>
                     `;
+                }
+
+                // Determine task label based on chapter
+                let taskLabel = '';
+                if (task.chapter === 1) {
+                    taskLabel = `Nissesang ${task.id}`;
+                } else if (task.chapter === 2) {
+                    taskLabel = 'Kodelåsen';
+                } else if (task.chapter === 3) {
+                    const nuttNumber = task.id - 9; // Start counting from 1 for chapter 3
+                    taskLabel = `Nøtt ${nuttNumber}`;
+                } else if (task.chapter === 4) {
+                    const pakkeNumber = task.id - 15; // Start counting from 1 for chapter 4
+                    taskLabel = `Pakke ${pakkeNumber}`;
+                } else if (task.chapter === 5) {
+                    taskLabel = 'Den Endelige Refleksjonen';
                 }
 
                 taskDiv.innerHTML += `
                     <div class="task-header">
-                        <span class="task-number">Task ${task.id}</span>
+                        <span class="task-number">${taskLabel}</span>
                         <span class="task-status ${statusClass}">${statusText}</span>
                     </div>
                     <div class="task-question">${task.question}</div>
@@ -1101,8 +1322,8 @@
                     const remainingSeconds = getRemainingPenaltyTime(task.id);
                     penaltyDiv.innerHTML = `
                         <div style="background: rgba(196, 30, 58, 0.2); border: 2px solid var(--crimson); border-radius: 12px; padding: 1rem; margin-top: 1rem; text-align: center;">
-                            <div style="color: var(--crimson); font-weight: 700; font-size: clamp(1rem, 4vw, 1.2rem); margin-bottom: 0.5rem;">❌ Wrong Answer!</div>
-                            <div style="color: var(--snow); font-size: clamp(0.85rem, 3.5vw, 0.9rem);">Time remaining: <span id="timer_${task.id}" style="font-weight: 700; color: var(--gold); font-size: clamp(1rem, 4vw, 1.1rem);">${formatTime(remainingSeconds)}</span></div>
+                            <div style="color: var(--crimson); font-weight: 700; font-size: clamp(1rem, 4vw, 1.2rem); margin-bottom: 0.5rem;">❌ Feil Svar!</div>
+                            <div style="color: var(--snow); font-size: clamp(0.85rem, 3.5vw, 0.9rem);">Tid igjen: <span id="timer_${task.id}" style="font-weight: 700; color: var(--gold); font-size: clamp(1rem, 4vw, 1.1rem);">${formatTime(remainingSeconds)}</span></div>
                         </div>
                     `;
                     taskDiv.appendChild(penaltyDiv);
@@ -1111,10 +1332,10 @@
                 if (isActive) {
                     const answerInput = document.createElement('textarea');
                     answerInput.id = `answer_${task.id}`;
-                    answerInput.placeholder = 'Type your answer here...';
+                    answerInput.placeholder = 'Skriv svaret ditt her...';
                     
                     const submitBtn = document.createElement('button');
-                    submitBtn.textContent = task.isFinal ? 'Complete Quest! 🎉' : 'Submit Answer';
+                    submitBtn.textContent = task.isFinal ? 'Fullfør Rømningen! 🎉' : 'Send inn svar';
                     submitBtn.onclick = () => submitAnswer(task.id);
                     
                     taskDiv.appendChild(answerInput);
@@ -1124,7 +1345,7 @@
                 if (isCompleted) {
                     const successMsg = document.createElement('div');
                     successMsg.className = 'success-message';
-                    successMsg.textContent = task.isFinal ? '🎉 Quest Complete! Congratulations! 🎉' : '✓ Answer submitted successfully!';
+                    successMsg.textContent = task.isFinal ? '🎉 Rømning Fullført! Gratulerer! 🎉' : '✓ Svar sendt inn!';
                     taskDiv.appendChild(successMsg);
                 }
 
@@ -1159,7 +1380,7 @@
             const answer = document.getElementById(`answer_${taskId}`).value.trim();
             
             if (!answer) {
-                alert('Please enter an answer!');
+                alert('Vennligst skriv inn et svar!');
                 return;
             }
 
@@ -1254,7 +1475,7 @@
         }
 
         async function resetApp() {
-            if (confirm('Are you sure you want to reset? All progress will be lost!')) {
+            if (confirm('Er du sikker på at du vil tilbakestille? All fremgang vil gå tapt!')) {
                 try {
                     if (currentTeam) {
                         localStorage.removeItem(`tasks_${currentTeam.name}`);
@@ -1379,7 +1600,7 @@
         }
 
         function startNewQuest() {
-            if (confirm('This will reset all progress. Are you sure?')) {
+            if (confirm('Dette vil tilbakestille all fremgang. Er du sikker?')) {
                 // Stop fireworks
                 if (fireworksInterval) {
                     clearInterval(fireworksInterval);
@@ -1410,6 +1631,47 @@
                 document.getElementById('registrationScreen').classList.remove('hidden');
                 document.getElementById('quizScreen').classList.add('hidden');
                 document.getElementById('congratulationsScreen').classList.add('hidden');
+            }
+        }
+
+        // Developer navigation functions
+        function devGoToStart() {
+            document.getElementById('registrationScreen').classList.remove('hidden');
+            document.getElementById('quizScreen').classList.add('hidden');
+            document.getElementById('congratulationsScreen').classList.add('hidden');
+        }
+
+        function devNextTask() {
+            if (completedTasks.length < TASKS.length) {
+                // Find the next incomplete task
+                const nextTask = TASKS.find(t => !completedTasks.includes(t.id));
+                if (nextTask) {
+                    completedTasks.push(nextTask.id);
+                    saveTeamData();
+                    
+                    // Check if this was the final task
+                    if (nextTask.isFinal) {
+                        showCongratulations();
+                    } else {
+                        renderTasks();
+                        updateProgress();
+                    }
+                }
+            }
+        }
+
+        function devPrevTask() {
+            if (completedTasks.length > 0) {
+                // Remove the last completed task
+                completedTasks.pop();
+                saveTeamData();
+                
+                // Make sure we're on the quiz screen
+                document.getElementById('congratulationsScreen').classList.add('hidden');
+                document.getElementById('quizScreen').classList.remove('hidden');
+                
+                renderTasks();
+                updateProgress();
             }
         }
 
