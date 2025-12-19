@@ -843,7 +843,7 @@
 
                     <div class="stats">
                         <div class="stat-item">
-                            <div class="stat-value">6/6</div>
+                            <div class="stat-value">9/9</div>
                             <div class="stat-label">Tasks Completed</div>
                         </div>
                         <div class="stat-item">
@@ -869,32 +869,57 @@
             },
             {
                 id: 2,
-                question: "In what country did the tradition of putting up a Christmas tree originate?",
-                answer: "germany",
-                isFinal: false
+                question: "Hvilket band står bak denne slageren?",
+                answer: "journey",
+                isFinal: false,
+                audioFile: "Journey.mp3"
             },
             {
                 id: 3,
-                question: "How many reindeer pull Santa's sleigh (including Rudolph)?",
-                answer: "9",
-                isFinal: false
+                question: "Hva er etternavnet til artisten bak denne låta?",
+                answer: "madonna",
+                isFinal: false,
+                audioFile: "Madonna.mp3"
             },
             {
                 id: 4,
-                question: "What is the name of the Grinch's dog?",
-                answer: "max",
-                isFinal: false
+                question: "Hvilket band står bak denne låta?",
+                answer: "a-ha",
+                isFinal: false,
+                audioFile: "A-ha.mp3"
             },
             {
                 id: 5,
-                question: "In the song '12 Days of Christmas,' what gift is given on the 7th day?",
-                answer: "seven swans a-swimming",
-                isFinal: false
+                question: "Hva er etternavnet til artisten bak denne låta?",
+                answer: "houston",
+                isFinal: false,
+                audioFile: "Houston.mp3"
             },
             {
                 id: 6,
-                question: "FINAL CHALLENGE: What year was the first Christmas card sent? (Hint: It was in the 1840s)",
-                answer: "1843",
+                question: "Hva er fornavnet til artisten bak denne låta?",
+                answer: "rick",
+                isFinal: false,
+                audioFile: "Rick.mp3"
+            },
+            {
+                id: 7,
+                question: "Hva er fornavnet til artisten bak denne låta?",
+                answer: "tina",
+                isFinal: false,
+                audioFile: "Tina.mp3"
+            },
+            {
+                id: 8,
+                question: "Hva heter bandet bak denne låta?",
+                answer: "wham",
+                isFinal: false,
+                audioFile: "Wham.mp3"
+            },
+            {
+                id: 9,
+                question: "FINAL CHALLENGE: Einstein-gåten - Briten reiser fra den røde gaten. Svensken skal til Mexico. Dansken drikker Pina Colada. Den grønne gaten er direkte til venstre for den hvite gaten. Den som reiser fra den grønne gaten drikker Sangria. Personen som pakket i koffert skal til Aruba. Den reisende fra den gule gaten har bare håndbagasje. Mannen som reiser fra gaten i midten drikker Mojito. Nordmannen reiser fra gate 1. Mannen som pakket i plastpose reiser fra gaten ved siden av den som skal til Bora Bora. Mannen som skal til Jamaica har gaten ved siden av han som pakket i plastpose. Mannen uten bagasje drikker øl. Spanjolen pakket i sekk. Nordmannen reiser fra en gate ved siden av den blå gaten. Mannen som pakket i plastpose reiser fra gaten ved siden han som drikker Mai Tai. Hvilken gate er hvit?",
+                answer: "5",
                 isFinal: true
             }
         ];
