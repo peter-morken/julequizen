@@ -527,16 +527,16 @@
 
         async function loadTeamData() {
             try {
-                const result = await window.storage.get('currentTeam');
-                if (result) {
-                    currentTeam = JSON.parse(result.value);
-                    const tasksResult = await window.storage.get(`tasks_${currentTeam.name}`);
-                    if (tasksResult) {
-                        completedTasks = JSON.parse(tasksResult.value);
+                const currentTeamData = localStorage.getItem('currentTeam');
+                if (currentTeamData) {
+                    currentTeam = JSON.parse(currentTeamData);
+                    const tasksData = localStorage.getItem(`tasks_${currentTeam.name}`);
+                    if (tasksData) {
+                        completedTasks = JSON.parse(tasksData);
                     }
-                    const penaltyResult = await window.storage.get(`penalties_${currentTeam.name}`);
-                    if (penaltyResult) {
-                        penaltyTimers = JSON.parse(penaltyResult.value);
+                    const penaltyData = localStorage.getItem(`penalties_${currentTeam.name}`);
+                    if (penaltyData) {
+                        penaltyTimers = JSON.parse(penaltyData);
                     }
                     return true;
                 }
@@ -548,9 +548,9 @@
 
         async function saveTeamData() {
             try {
-                await window.storage.set('currentTeam', JSON.stringify(currentTeam));
-                await window.storage.set(`tasks_${currentTeam.name}`, JSON.stringify(completedTasks));
-                await window.storage.set(`penalties_${currentTeam.name}`, JSON.stringify(penaltyTimers));
+                localStorage.setItem('currentTeam', JSON.stringify(currentTeam));
+                localStorage.setItem(`tasks_${currentTeam.name}`, JSON.stringify(completedTasks));
+                localStorage.setItem(`penalties_${currentTeam.name}`, JSON.stringify(penaltyTimers));
             } catch (error) {
                 console.error('Error saving data:', error);
             }
@@ -566,19 +566,19 @@
 
             // Check if this team already exists
             try {
-                const existingTeamResult = await window.storage.get('currentTeam');
-                if (existingTeamResult) {
-                    const existingTeam = JSON.parse(existingTeamResult.value);
+                const existingTeamData = localStorage.getItem('currentTeam');
+                if (existingTeamData) {
+                    const existingTeam = JSON.parse(existingTeamData);
                     if (existingTeam.name === teamName) {
                         // Team exists, load their data
                         currentTeam = existingTeam;
-                        const tasksResult = await window.storage.get(`tasks_${currentTeam.name}`);
-                        if (tasksResult) {
-                            completedTasks = JSON.parse(tasksResult.value);
+                        const tasksData = localStorage.getItem(`tasks_${currentTeam.name}`);
+                        if (tasksData) {
+                            completedTasks = JSON.parse(tasksData);
                         }
-                        const penaltyResult = await window.storage.get(`penalties_${currentTeam.name}`);
-                        if (penaltyResult) {
-                            penaltyTimers = JSON.parse(penaltyResult.value);
+                        const penaltyData = localStorage.getItem(`penalties_${currentTeam.name}`);
+                        if (penaltyData) {
+                            penaltyTimers = JSON.parse(penaltyData);
                         }
                         showQuizScreen();
                         return;
@@ -756,7 +756,7 @@
                 
                 // Save the answer with timestamp
                 try {
-                    await window.storage.set(`answer_${currentTeam.name}_${taskId}`, JSON.stringify({
+                    localStorage.setItem(`answer_${currentTeam.name}_${taskId}`, JSON.stringify({
                         answer: answer,
                         timestamp: Date.now()
                     }));
@@ -784,7 +784,7 @@
                 
                 // Save the answer with timestamp
                 try {
-                    await window.storage.set(`answer_${currentTeam.name}_${taskId}`, JSON.stringify({
+                    localStorage.setItem(`answer_${currentTeam.name}_${taskId}`, JSON.stringify({
                         answer: answer,
                         timestamp: Date.now()
                     }));
@@ -804,12 +804,10 @@
                 try {
                     const attemptsKey = `attempts_${currentTeam.name}_${taskId}`;
                     let attempts = [];
-                    try {
-                        const attemptsResult = await window.storage.get(attemptsKey);
-                        if (attemptsResult) {
-                            attempts = JSON.parse(attemptsResult.value);
-                        }
-                    } catch (e) {}
+                    const attemptsData = localStorage.getItem(attemptsKey);
+                    if (attemptsData) {
+                        attempts = JSON.parse(attemptsData);
+                    }
                     
                     attempts.push({
                         answer: answer,
@@ -817,7 +815,7 @@
                         penaltyUntil: penaltyEndTime
                     });
                     
-                    await window.storage.set(attemptsKey, JSON.stringify(attempts));
+                    localStorage.setItem(attemptsKey, JSON.stringify(attempts));
                 } catch (error) {
                     console.error('Error saving attempt:', error);
                 }
@@ -842,16 +840,15 @@
             if (confirm('Are you sure you want to reset? All progress will be lost!')) {
                 try {
                     if (currentTeam) {
-                        await window.storage.delete(`tasks_${currentTeam.name}`);
-                        await window.storage.delete(`penalties_${currentTeam.name}`);
+                        localStorage.removeItem(`tasks_${currentTeam.name}`);
+                        localStorage.removeItem(`penalties_${currentTeam.name}`);
                         // Delete all answers
                         for (const task of TASKS) {
-                            try {
-                                await window.storage.delete(`answer_${currentTeam.name}_${task.id}`);
-                            } catch (e) {}
+                            localStorage.removeItem(`answer_${currentTeam.name}_${task.id}`);
+                            localStorage.removeItem(`attempts_${currentTeam.name}_${task.id}`);
                         }
                     }
-                    await window.storage.delete('currentTeam');
+                    localStorage.removeItem('currentTeam');
                 } catch (error) {
                     console.error('Error resetting:', error);
                 }
@@ -885,9 +882,9 @@
             if (currentTeam) {
                 // Reload penalty timers to ensure they're current
                 try {
-                    const penaltyResult = await window.storage.get(`penalties_${currentTeam.name}`);
-                    if (penaltyResult) {
-                        const storedPenalties = JSON.parse(penaltyResult.value);
+                    const penaltyData = localStorage.getItem(`penalties_${currentTeam.name}`);
+                    if (penaltyData) {
+                        const storedPenalties = JSON.parse(penaltyData);
                         // Update any penalties that might have been modified
                         for (const taskId in storedPenalties) {
                             if (!penaltyTimers[taskId] || storedPenalties[taskId] > penaltyTimers[taskId]) {
