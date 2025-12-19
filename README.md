@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
     <title>Christmas Quest 🎄</title>
     <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&family=Karla:wght@400;600&display=swap" rel="stylesheet">
     <style>
@@ -10,6 +12,10 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         :root {
@@ -29,6 +35,8 @@
             color: var(--snow);
             position: relative;
             overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
         }
 
         /* Animated snowflakes background */
@@ -166,6 +174,9 @@
             font-family: 'Karla', sans-serif;
             font-size: 1rem;
             transition: all 0.3s ease;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
         }
 
         input[type="text"]:focus,
@@ -195,9 +206,13 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(196, 30, 58, 0.4);
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            min-height: 48px; /* Minimum touch target size */
         }
 
-        button:hover {
+        button:hover,
+        button:active {
             transform: translateY(-2px);
             box-shadow: 0 6px 25px rgba(196, 30, 58, 0.6);
         }
@@ -427,14 +442,127 @@
         @media (max-width: 768px) {
             h1 {
                 font-size: 2.5rem;
+                text-shadow: 
+                    2px 2px 0 var(--crimson),
+                    4px 4px 0 var(--berry),
+                    -1px -1px 10px rgba(255, 215, 0, 0.3);
+            }
+
+            .subtitle {
+                font-size: 0.9rem;
+                letter-spacing: 2px;
             }
 
             .container {
                 padding: 1rem;
             }
 
+            .card {
+                padding: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .task-question {
+                font-size: 1rem;
+            }
+
+            .task-number {
+                font-size: 1.2rem;
+            }
+
+            .task-status {
+                font-size: 0.7rem;
+                padding: 0.2rem 0.75rem;
+            }
+
+            .team-info {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 1rem;
+            }
+
+            .team-name {
+                font-size: 1.2rem;
+                text-align: center;
+            }
+
+            button {
+                padding: 1rem 2rem;
+                font-size: 0.9rem;
+                width: 100%;
+            }
+
             .button-group {
                 flex-direction: column;
+            }
+
+            input[type="text"],
+            textarea {
+                padding: 0.875rem;
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+
+            textarea {
+                min-height: 80px;
+            }
+
+            .task-item {
+                padding: 1.25rem;
+            }
+
+            .unlocked-badge {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+            }
+
+            .final-task::after {
+                font-size: 2rem;
+                top: 0.5rem;
+                right: 0.5rem;
+            }
+
+            header {
+                margin-bottom: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 0.75rem;
+                letter-spacing: 1px;
+            }
+
+            h2 {
+                font-size: 1.3rem;
+            }
+
+            .card {
+                padding: 1.25rem;
+                border-radius: 16px;
+            }
+
+            .task-item {
+                padding: 1rem;
+                border-radius: 10px;
+            }
+
+            button {
+                padding: 0.875rem 1.5rem;
+                font-size: 0.85rem;
+                letter-spacing: 1px;
+            }
+
+            label {
+                font-size: 0.75rem;
             }
         }
     </style>
@@ -450,7 +578,7 @@
         <div id="registrationScreen" class="hidden">
             <div class="card">
                 <h2>🎅 Register Your Team</h2>
-                <p style="color: var(--silver); margin-bottom: 1.5rem; font-size: 0.95rem;">
+                <p style="color: var(--silver); margin-bottom: 1.5rem; font-size: clamp(0.85rem, 3.5vw, 0.95rem); line-height: 1.6;">
                     ⚠️ <strong>Important:</strong> Your team's progress is automatically saved. 
                     Refreshing or closing the page will not reset your answers or penalty timers!
                 </p>
@@ -686,8 +814,8 @@
                     const remainingSeconds = getRemainingPenaltyTime(task.id);
                     penaltyDiv.innerHTML = `
                         <div style="background: rgba(196, 30, 58, 0.2); border: 2px solid var(--crimson); border-radius: 12px; padding: 1rem; margin-top: 1rem; text-align: center;">
-                            <div style="color: var(--crimson); font-weight: 700; font-size: 1.2rem; margin-bottom: 0.5rem;">❌ Wrong Answer!</div>
-                            <div style="color: var(--snow); font-size: 0.9rem;">Time remaining: <span id="timer_${task.id}" style="font-weight: 700; color: var(--gold);">${formatTime(remainingSeconds)}</span></div>
+                            <div style="color: var(--crimson); font-weight: 700; font-size: clamp(1rem, 4vw, 1.2rem); margin-bottom: 0.5rem;">❌ Wrong Answer!</div>
+                            <div style="color: var(--snow); font-size: clamp(0.85rem, 3.5vw, 0.9rem);">Time remaining: <span id="timer_${task.id}" style="font-weight: 700; color: var(--gold); font-size: clamp(1rem, 4vw, 1.1rem);">${formatTime(remainingSeconds)}</span></div>
                         </div>
                     `;
                     taskDiv.appendChild(penaltyDiv);
