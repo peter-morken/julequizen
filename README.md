@@ -842,7 +842,7 @@
             <div class="congrats-container">
                 <div class="trophy">🏆</div>
                 <h1 class="congrats-title">Gratulerer!</h1>
-                <p class="congrats-subtitle">Dere Rømte!</p>
+                <p class="congrats-subtitle">Julen er reddet!</p>
 
                 <div class="card">
                     <div class="team-name" id="congratsTeamName">Mesterlaget</div>
@@ -851,15 +851,11 @@
                         <br>
                         Julen er offisielt reddet. Julenissen er ute av sitt emosjonelle bunker. Nissene er gjenforent. Pakkene er sortert. Og pinnekjøttet har fått den respekten det fortjener.
                         <br>
-                        <strong>Stillhet.</strong>
-                        <br>
                         Så høres lyden av en flaske som settes ned. Langsomt. Forsiktig.
                         <br>
                         Døren åpner seg. Julenissen står der i en skitten joggebukse og en genser han tydeligvis har sovet i. Øynene er røde. Håret er rotete. Men i hendene hans holder han... et fat med pinnekjøtt.
                         <br>
                         "Dere... sa det," hvisker han. "Pinnekjøtt."
-                        <br>
-                        Han ser ned på fatet.
                         <br>
                         "Vet dere hva dette er? Dette er ikke bare mat. Dette er..." Han stopper. Tårene kommer. "...dette er den eneste grunnen jeg fortsatt tror på jul. Ikke gavene. Ikke barna. Ikke magien. Bare... dette."
                         <br>
@@ -879,15 +875,7 @@
                         <br>
                         "Greit. Greit, jeg kommer. Men..." Han holder frem pinnekjøtt-fatet. "...vi tar med oss dette. Og i år? I år serverer vi DETTE på julefesten. F*ck kalkun."
                         <br>
-                        Alle nikker.
-                        <br>
-                        <strong>Julen er reddet.</strong>
-                        <br>
-                        Julenissens siste ord: "Takk. For alt. Nå... hvor er pinnekjøttet?"
-                        <br>
                         God jul, helter. Vi sees neste år når alt går til helvete igjen.
-                        <br>
-                        🎄🥃🍖
                         <br><br>
                         <strong>P.S. Pinnekjøtt > Alt annet. Dette er fakta.</strong>
                     </p>
@@ -1044,7 +1032,7 @@
                 question: `Sendes til byen som huskes for sportsbegivenheten i dette tusenår,<br>
                 og dog bynavnet (forenklet) er utenlandsk, er det to ord vi også forstår.<br><br>
                 
-                Det første er èn av fem, med og I, og er i sammensatte ord<br>
+                Det første er èn av fem, med og uten I, og er i sammensatte ord<br>
                 som med støtte, Himalaya, vann, korn, vei, krystall og bord.<br><br>
                 
                 Fjernes mellomrommet i bynavnet, kan det med reker få,<br>
@@ -1090,8 +1078,7 @@
             },
             {
                 id: 19,
-                question: `<strong>Under her har jeg skrevet ned tanker. Refleksjoner fra en mann som har sett for mange juler. Les mellom linjene. Finn essensen. Det eneste som fortsatt gir mening for meg.</strong><br><br>
-                
+                                
                 <em>Prisen for å glede alle andre hele tiden? <br>
                 Isolasjon. Total. Komplett. Evig. <br>
                 Nettene er verst, vet du. Når alle sover. <br>
@@ -1422,7 +1409,7 @@
                     narrativeDiv.style.borderRadius = '8px';
                     narrativeDiv.innerHTML = `
                         <p style="color: var(--snow); font-size: clamp(0.9rem, 3.5vw, 1rem); line-height: 1.8; margin: 0;">
-                            Døren glir opp med et sus av hydraulikk. Innenfor ser verkstedet... overraskende ryddig ut. Bortsett fra den halvtomme flasken Linie Aquavit på workbenchen og en lapp som sier "DERE ER FORTSATT IKKE FERDIGE - GLEM IKKE GODTERIET."
+                            Døren glir opp med et sus av hydraulikk. Innenfor ser verkstedet... overraskende ryddig ut. Bortsett fra den halvtomme flasken Linie Aquavit på arbeidsbordet og en lapp som sier "DERE ER FORTSATT IKKE FERDIGE - GLEM IKKE GODTERIET."
                             <br><br>
                             En eldre nisse peker på en tunnel bak verkstedet. "Pepperkakelandsbyen," sukker han. "Der holder leverandøren vår til. Sjefen må ha låst de også. Uten dem får vi ingen dekorasjoner. Og uten dekorasjoner får vi DEFINITIVT høre på 'hvorfor var ikke gaven min instagramvennlig'-klager hele neste år."
                         </p>
