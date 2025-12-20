@@ -786,6 +786,7 @@
     <div class="container">
         <header>
             <h1><span class="ornament">🎅</span> Nisseopprøret <span class="ornament">🎅</span></h1>
+            <p class="subtitle">Escape Room</p>
         </header>
 
         <!-- Registration Screen -->
@@ -795,17 +796,17 @@
                 <p style="color: var(--snow); margin-bottom: 1.5rem; font-size: clamp(0.9rem, 3.5vw, 1rem); line-height: 1.8; text-align: left;">
                     Det har skjedd. Julenissen har endelig knekt under presset av årevis med urimelige forventninger, Amazon Prime-konkurranse, og konstante klager om at "Xbox-en var feil farge". Han har stengt seg inne på kontoret sitt med en flaske akevitt og nekter å komme ut.
                     <br><br>
-                    Som den eneste nissen med nøkkelkort til alle avdelingene (takk, HR), er DU den uheldige sjelen som må fikse dette kaoset. Problemet? Julenissen har kodelåst alt i et fyllearrangert raseri, og du har 60 minutter på deg før Instagram-generasjonen våkner og oppdager at julen er avlyst.
+                    Som den eneste nissen med nøkkelkort til alle avdelingene (takk, HR), er DU den uheldige sjelen som må fikse dette kaoset. Problemet? Julenissen har kodelåst alt i et fyllearrangert raseri, og du har 24 timer på deg før Instagram-generasjonen våkner og oppdager at julen er avlyst.
                 </p>
                 <p style="color: var(--silver); margin-bottom: 1.5rem; font-size: clamp(0.85rem, 3.5vw, 0.95rem); line-height: 1.6;">
                     ⚠️ <strong>Viktig:</strong> Lagets fremgang lagres automatisk. 
-                    Å oppdatere eller lukke siden vil ikke tilbakestille svarene eller straffetidene deres! Feil svar gir straffetid.
+                    Å oppdatere eller lukke siden vil ikke tilbakestille svarene eller straffetidene deres! Feil svar gir 10 sekunders straff.
                 </p>
                 <div class="input-group">
-                    <label for="teamName">Nisselagnavn</label>
+                    <label for="teamName">Lagets Nissenavn</label>
                     <input type="text" id="teamName" placeholder="F.eks. Snøballkrigerne, Glitter-gjengen..." />
                 </div>
-                <button onclick="registerTeam()">Start Kaoset</button>
+                <button onclick="registerTeam()">Start Rømningen</button>
             </div>
         </div>
 
@@ -829,7 +830,7 @@
             <div class="card">
                 <h2>🎵 Kapittel 1: Verkstedet</h2>
                 <p style="color: var(--snow); margin-bottom: 1.5rem; font-size: clamp(0.9rem, 3.5vw, 1rem); line-height: 1.8;">
-                    Du ankommer verkstedet og finner 8 nisser som har funnet julegløggen litt for tidlig i år. De har startet karaoke og nekter å jobbe før du beviser at DU kan noe om musikk. "Du kan ikke være sjef for oss hvis du ikke engang kan gjenkjenne hva vi synger!" roper den mest drita nissen. Du oppdager raskt at tekst og melodi ikke er noe du har hørt før - det må være noen merkelige coverversjoner de synger!
+                    Du ankommer verkstedet og finner 8 nisser som har funnet julegløggen litt for tidlig i år. De har startet karaoke og nekter å jobbe før du beviser at DU kan noe om musikk. "Du kan ikke være sjef for oss hvis du ikke engang kan gjenkjenne hva vi synger!" roper den mest fulle nissen.
                 </p>
                 <div class="task-list" id="taskList"></div>
             </div>
@@ -874,7 +875,7 @@
         const TASKS = [
             {
                 id: 1,
-                question: "Hvilken sang covrer den fulle nissen her?",
+                question: "Hva heter denne sangen?",
                 answer: "africa",
                 isFinal: false,
                 audioFile: "Afrika.mp3",
@@ -939,26 +940,33 @@
             {
                 id: 9,
                 question: `<strong>REGLER (les nøye, din idiot):</strong><br>
-                <br>
+                "X tall er riktige" = X av sifrene finnes SOMEWHERE i koden<br>
+                "Y er på riktig plass" = Y av sifrene er på EKSAKT korrekt posisjon<br>
+                "Z er feil" = Z siffer finnes IKKE i koden i det hele tatt<br><br>
                 
-                <strong>4 2 8</strong><br>
-                1 tall er riktig, men feil plass, 0 er på riktig plass, 2 er feil<br><br>
+                <strong>Forsøk 1:</strong> 1 2 3 4 5<br>
+                Resultat: 2 tall er riktige, 0 er på riktig plass, 3 er feil<br><br>
                 
-                <strong>0 4 2</strong><br>
-                1 tall er riktig, men feil plass, 0 er på riktig plass, 2 er feil<br><br>
+                <strong>Forsøk 2:</strong> 6 7 8 9 0<br>
+                Resultat: 2 tall er riktige, 1 er på riktig plass, 3 er feil<br><br>
                 
-                <strong>3 0 6</strong><br>
-                1 tall er riktig, men feil plass, 0 er på riktig plass, 2 er feil<br><br>
+                <strong>Forsøk 3:</strong> 2 6 4 8 1<br>
+                Resultat: 4 tall er riktige, 1 er på riktig plass, 1 er feil<br><br>
                 
-                <strong>0 2 4</strong><br>
-                1 tall er riktig, men feil plass, 0 er på riktig plass, 2 er feil<br><br>
+                <strong>Forsøk 4:</strong> 8 4 2 6 9<br>
+                Resultat: 4 tall er riktige, 2 er på riktig plass, 1 er feil<br><br>
                 
-                <strong>3 1 6</strong><br>
-                1 tall er riktig, men feil plass, 1 er på riktig plass, 1 er feil<br><br>
+                <strong>Forsøk 5:</strong> 8 2 4 0 6<br>
+                Resultat: 4 tall er riktige, 1 er på riktig plass, 1 er feil<br><br>
                 
-                                
-                <strong>Hva er den 3-sifrede koden? (Skriv uten mellomrom, f.eks: 12345)</strong>`,
-                answer: "213",
+                <strong>Forsøk 6:</strong> 4 8 6 2 7<br>
+                Resultat: 4 tall er riktige, 2 er på riktig plass, 1 er feil<br><br>
+                
+                <strong>Forsøk 7:</strong> 6 8 4 2 1<br>
+                Resultat: 4 tall er riktige, 3 er på riktig plass, 1 er feil<br><br>
+                
+                <strong>Hva er den 5-sifrede koden? (Skriv uten mellomrom, f.eks: 12345)</strong>`,
+                answer: "68426",
                 isFinal: false,
                 chapter: 2
             },
@@ -986,13 +994,13 @@
             {
                 id: 13,
                 question: "Hvilken TV-kanal sender Rampenissen?",
-                answer: "tv2",
+                answer: "nrk",
                 isFinal: false,
                 chapter: 3
             },
             {
                 id: 14,
-                question: "Hvem synger sangen 'Home for Christmas'? (fornavn)",
+                question: "Hvem synger sangen 'Home for Christmas'? (etternavn)",
                 answer: "bing",
                 isFinal: false,
                 chapter: 3
@@ -1038,21 +1046,12 @@
             },
             {
                 id: 19,
-                question: `<strong>Jeg er lei av å levere pakker. Skli ned piper. Gi glede til folk som ikke tror på meg. Nå finnes det bare en ting som kan få meg til å åpne døren. Alt annet er meningsløst. Noen refleksjoner fra en sliten, gammel nisse:.</strong><br><br>
+                question: `<strong>Under her har jeg skrevet ned tanker. Refleksjoner fra en mann som har sett for mange juler. Les mellom linjene. Finn essensen. Det eneste som fortsatt gir mening for meg.</strong><br><br>
                 
-                <em>Prisen for å glede alle andre hele tiden? <br><br>
-                    Isolasjon. Total. Komplett. Evig. <br><br>
-                    Nattene er verst, vet du. Når alle sover. <br><br>
-                    Nordlyset danser, men jeg ser det knapt lenger. <br><br>
-                    Er dette virkelig alt? År etter år? <br><br>
-                    Kanskje burde jeg bare... gi opp. <br><br>
-                    Jeg husker da det betydde noe. Da JEG betydde noe. <br><br>
-                    Ønsket var annerledes den gang. Enklere. <br><br>
-                    Tiden tar alt, til slutt. Selv magien. <br><br>
-                    Takk for ingenting, moderne verden.</em><br><br>`
+                <em>Prisen for å glede alle andre hele tiden? Isolasjon. Total. Komplett. Evig. Nattene er verst, vet du. Når alle sover. Nordlyset danser, men jeg ser det knapt lenger. Er dette virkelig alt? År etter år? Kanskje burde jeg bare... gi opp. Jeg husker da det betydde noe. Da JEG betydde noe. Ønsket var annerledes den gang. Enklere. Tiden tar alt, til slutt. Selv magien. Takk for ingenting, moderne verden.</em><br><br>
                 
-                
-                answer: "pinnekjøtt",
+                <strong>Hva er det eneste som fortsatt gir mening? (Skriv svaret som ett ord)</strong>`,
+                answer: "pjokken",
                 isFinal: true,
                 chapter: 5
             }
