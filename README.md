@@ -938,7 +938,7 @@
             },
             {
                 id: 9,
-                question: `<strong>REGLER (les nøye, din idiot):</strong><br>
+                question: <strong>REGLER (les nøye, din idiot):</strong><br>
                 <br>
                 
                 <strong>4 2 8</strong><br>
