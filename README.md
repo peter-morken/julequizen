@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Nissekaoset 🎅</title>
     <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&family=Karla:wght@400;600&display=swap" rel="stylesheet">
     <style>
@@ -19,6 +20,8 @@
             overflow-x: hidden;
             width: 100%;
             max-width: 100vw;
+            height: 100%;
+            position: fixed;
         }
 
         :root {
@@ -34,14 +37,21 @@
         body {
             font-family: 'Karla', sans-serif;
             background: linear-gradient(135deg, #1a472a 0%, #0a2818 50%, #051810 100%);
-            min-height: 100vh;
+            background-attachment: fixed;
+            height: 100%;
             color: var(--snow);
-            position: relative;
+            position: fixed;
             overflow-x: hidden;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
             -webkit-tap-highlight-color: transparent;
             -webkit-touch-callout: none;
             width: 100%;
             max-width: 100vw;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
         }
 
         /* Animated snowflakes background */
@@ -75,7 +85,11 @@
         .container {
             max-width: 900px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 2rem 1rem;
+            padding-top: max(2rem, env(safe-area-inset-top));
+            padding-bottom: max(4rem, env(safe-area-inset-bottom));
+            padding-left: max(1rem, env(safe-area-inset-left));
+            padding-right: max(1rem, env(safe-area-inset-right));
             position: relative;
             z-index: 2;
             width: 100%;
@@ -447,14 +461,24 @@
             position: fixed;
             top: 0;
             left: 0;
+            right: 0;
+            bottom: 0;
             width: 100%;
-            height: 100vh;
+            height: 100%;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
             text-align: center;
             z-index: 1000;
             overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+            padding: 2rem 1rem 4rem 1rem;
+            padding-top: max(2rem, env(safe-area-inset-top));
+            padding-bottom: max(4rem, env(safe-area-inset-bottom));
+            padding-left: max(1rem, env(safe-area-inset-left));
+            padding-right: max(1rem, env(safe-area-inset-right));
+            box-sizing: border-box;
         }
 
         #congratulationsScreen.hidden {
@@ -465,8 +489,9 @@
             max-width: 800px;
             width: 100%;
             animation: fadeIn 1s ease-out;
-            padding: 2rem 1rem;
+            padding: 2rem 1rem 4rem 1rem;
             box-sizing: border-box;
+            margin-top: 2rem;
         }
 
         .trophy {
@@ -523,7 +548,8 @@
             font-size: clamp(1rem, 3.5vw, 1.2rem);
             color: var(--silver);
             line-height: 1.8;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
         }
 
         .stats {
