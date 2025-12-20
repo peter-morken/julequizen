@@ -1027,8 +1027,8 @@
             },
             {
                 id: 14,
-                question: "Hvem synger sangen 'Home for Christmas'? (fornavn)",
-                answer: "bing",
+                question: "Hvem synger sangen 'Home for Christmas' fra 2010? (fornavn)",
+                answer: "maria",
                 isFinal: false,
                 chapter: 3
             },
