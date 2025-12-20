@@ -903,7 +903,7 @@
                         </div>
                     </div>
 
-                    <button onclick="startNewQuest()">Start Ny Rømning</button>
+                    <button onclick="startNewQuest()">Start Nytt Kaos</button>
                 </div>
             </div>
         </div>
@@ -1515,7 +1515,7 @@
                     answerInput.placeholder = 'Skriv svaret ditt her...';
                     
                     const submitBtn = document.createElement('button');
-                    submitBtn.textContent = task.isFinal ? 'Fullfør Rømningen! 🎉' : 'Send inn svar';
+                    submitBtn.textContent = task.isFinal ? 'Fullfør Kaoset! 🎉' : 'Send inn svar';
                     submitBtn.onclick = () => submitAnswer(task.id);
                     
                     taskDiv.appendChild(answerInput);
@@ -1525,7 +1525,7 @@
                 if (isCompleted) {
                     const successMsg = document.createElement('div');
                     successMsg.className = 'success-message';
-                    successMsg.textContent = task.isFinal ? '🎉 Rømning Fullført! Gratulerer! 🎉' : '✓ Riktig!';
+                    successMsg.textContent = task.isFinal ? '🎉 Kaoset er Over! Gratulerer! 🎉' : '✓ Riktig!';
                     taskDiv.appendChild(successMsg);
                 }
 
@@ -1703,18 +1703,26 @@
                         const answer1 = localStorage.getItem(`answer_${currentTeam.name}_1`);
                         if (answer1) {
                             const answerData = JSON.parse(answer1);
-                            startTime = answerData.timestamp;
+                            if (answerData.timestamp) {
+                                startTime = answerData.timestamp;
+                            }
                         }
-                    } catch (e) {}
+                    } catch (e) {
+                        console.log('Could not get first task time, using completion time');
+                    }
 
                     const duration = completion.completedAt - startTime;
                     const minutes = Math.floor(duration / 60000);
                     const seconds = Math.floor((duration % 60000) / 1000);
                     document.getElementById('completionTime').textContent = 
                         `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                } else {
+                    // If no completion data, show a default
+                    document.getElementById('completionTime').textContent = '0:00';
                 }
             } catch (error) {
                 console.error('Error calculating time:', error);
+                document.getElementById('completionTime').textContent = '--:--';
             }
             
             // Start celebrations
