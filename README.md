@@ -938,7 +938,7 @@
             },
             {
                 id: 9,
-                question: <strong>REGLER (les nøye, din idiot):</strong><br>
+                question: `<strong>REGLER (les nøye, din idiot):</strong><br>
                 <br>
                 
                 <strong>4 2 8</strong><br>
@@ -1049,7 +1049,7 @@
                     Jeg husker da det betydde noe. Da JEG betydde noe. <br><br>
                     Ønsket var annerledes den gang. Enklere. <br><br>
                     Tiden tar alt, til slutt. Selv magien. <br><br>
-                    Takk for ingenting, moderne verden.</em><br><br>
+                    Takk for ingenting, moderne verden.</em><br><br>`
                 
                 
                 answer: "pinnekjøtt",
