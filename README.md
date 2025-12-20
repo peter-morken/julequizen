@@ -1021,7 +1021,7 @@
             {
                 id: 13,
                 question: "Hvilken TV-kanal sender Rampenissen?",
-                answer: "nrk",
+                answer: "tv2",
                 isFinal: false,
                 chapter: 3
             },
