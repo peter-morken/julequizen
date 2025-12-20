@@ -1078,7 +1078,7 @@
             },
             {
                 id: 19,
-                question:               
+                question:`            
                 <em>Prisen for å glede alle andre hele tiden? <br>
                 Isolasjon. Total. Komplett. Evig. <br>
                 Nettene er verst, vet du. Når alle sover. <br>
