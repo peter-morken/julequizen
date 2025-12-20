@@ -1615,7 +1615,7 @@
                 updateProgress();
             } else {
                 // Wrong answer - apply 10 second penalty
-                const penaltyEndTime = Date.now() + (10 * 1000); // 10 seconds from now
+                const penaltyEndTime = Date.now() + (25 * 1000); // 10 seconds from now
                 penaltyTimers[taskId] = penaltyEndTime;
                 
                 // Also save the wrong attempt with timestamp
