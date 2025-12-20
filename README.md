@@ -20,8 +20,6 @@
             overflow-x: hidden;
             width: 100%;
             max-width: 100vw;
-            height: 100%;
-            position: fixed;
         }
 
         :root {
@@ -38,20 +36,18 @@
             font-family: 'Karla', sans-serif;
             background: linear-gradient(135deg, #1a472a 0%, #0a2818 50%, #051810 100%);
             background-attachment: fixed;
-            height: 100%;
+            min-height: 100vh;
             color: var(--snow);
-            position: fixed;
+            position: relative;
             overflow-x: hidden;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
             -webkit-tap-highlight-color: transparent;
             -webkit-touch-callout: none;
             width: 100%;
             max-width: 100vw;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            padding-top: env(safe-area-inset-top);
+            padding-bottom: env(safe-area-inset-bottom);
+            padding-left: env(safe-area-inset-left);
+            padding-right: env(safe-area-inset-right);
         }
 
         /* Animated snowflakes background */
@@ -85,11 +81,8 @@
         .container {
             max-width: 900px;
             margin: 0 auto;
-            padding: 2rem 1rem;
-            padding-top: max(2rem, env(safe-area-inset-top));
-            padding-bottom: max(4rem, env(safe-area-inset-bottom));
-            padding-left: max(1rem, env(safe-area-inset-left));
-            padding-right: max(1rem, env(safe-area-inset-right));
+            padding: 2rem;
+            padding-bottom: 4rem;
             position: relative;
             z-index: 2;
             width: 100%;
@@ -461,10 +454,8 @@
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
             width: 100%;
-            height: 100%;
+            height: 100vh;
             display: flex;
             align-items: flex-start;
             justify-content: center;
@@ -473,12 +464,6 @@
             overflow-y: auto;
             overflow-x: hidden;
             -webkit-overflow-scrolling: touch;
-            padding: 2rem 1rem 4rem 1rem;
-            padding-top: max(2rem, env(safe-area-inset-top));
-            padding-bottom: max(4rem, env(safe-area-inset-bottom));
-            padding-left: max(1rem, env(safe-area-inset-left));
-            padding-right: max(1rem, env(safe-area-inset-right));
-            box-sizing: border-box;
         }
 
         #congratulationsScreen.hidden {
@@ -489,7 +474,9 @@
             max-width: 800px;
             width: 100%;
             animation: fadeIn 1s ease-out;
-            padding: 2rem 1rem 4rem 1rem;
+            padding: 2rem 1rem;
+            padding-top: 3rem;
+            padding-bottom: 5rem;
             box-sizing: border-box;
             margin-top: 2rem;
         }
@@ -548,8 +535,7 @@
             font-size: clamp(1rem, 3.5vw, 1.2rem);
             color: var(--silver);
             line-height: 1.8;
-            margin-bottom: 2rem;
-            padding-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .stats {
